@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifndef RCLCPP_GTEST_EXAMPLE__ADD_TWO_INTS_SERVER_HPP_
+#define RCLCPP_GTEST_EXAMPLE__ADD_TWO_INTS_SERVER_HPP_
+
 #include <chrono>
 #include <cstdlib>
 #include <memory>
@@ -32,3 +35,5 @@ private:
           request,
       std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response);
 };
+
+#endif  // RCLCPP_GTEST_EXAMPLE__ADD_TWO_INTS_SERVER_HPP_

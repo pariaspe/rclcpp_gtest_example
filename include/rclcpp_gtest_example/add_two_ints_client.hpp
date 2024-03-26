@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifndef RCLCPP_GTEST_EXAMPLE__ADD_TWO_INTS_CLIENT_HPP_
+#define RCLCPP_GTEST_EXAMPLE__ADD_TWO_INTS_CLIENT_HPP_
+
 #include <chrono>
 #include <cstdlib>
 #include <memory>
@@ -30,3 +33,5 @@ public:
 private:
   rclcpp::Client<example_interfaces::srv::AddTwoInts>::SharedPtr client_;
 };
+
+#endif  // RCLCPP_GTEST_EXAMPLE__ADD_TWO_INTS_CLIENT_HPP_
