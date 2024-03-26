@@ -16,5 +16,5 @@ foreach(TEST_FILE ${TEST_SOURCE})
   # Add GTest executable and link necessary dependencies
   ament_add_gtest(${PROJECT_NAME}_${TEST_NAME} ${TEST_FILE})
   ament_target_dependencies(${PROJECT_NAME}_${TEST_NAME} ${PROJECT_DEPENDENCIES} ${TEST_DEPENDENCIES})
-  # target_link_libraries(${PROJECT_NAME}_${TEST_NAME} ${PROJECT_NAME})
+  target_link_libraries(${PROJECT_NAME}_${TEST_NAME} ${PROJECT_NAME})
 endforeach()

@@ -23,6 +23,7 @@ include_directories(
 
 set(SOURCE_CPP_FILES
   src/add_two_ints_client.cpp
+  src/add_two_ints_server.cpp
 )
 
 # Creating library for test linking
