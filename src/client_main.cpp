@@ -20,33 +20,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include "rclcpp/rclcpp.hpp"
+
 #include "rclcpp_gtest_example/add_two_ints_client.hpp"
 
-AddTwoIntsClient::AddTwoIntsClient() : Node("add_two_ints_client") {
-  client_ =
-      this->create_client<example_interfaces::srv::AddTwoInts>("add_two_ints");
-}
+int main(int argc, char **argv) {
+  rclcpp::init(argc, argv);
 
-AddTwoIntsClient::~AddTwoIntsClient() {}
-
-rclcpp::Client<example_interfaces::srv::AddTwoInts>::SharedFuture
-AddTwoIntsClient::call_client(int a, int b) {
-  auto request =
-      std::make_shared<example_interfaces::srv::AddTwoInts::Request>();
-  request->a = a;
-  request->b = b;
-
-  while (!client_->wait_for_service(std::chrono::seconds(1))) {
-    if (!rclcpp::ok()) {
-      RCLCPP_ERROR(this->get_logger(),
-                   "Interrupted while waiting for the service. Exiting.");
-      return rclcpp::Client<
-          example_interfaces::srv::AddTwoInts>::SharedFuture();
-    }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"),
-                "service not available, waiting again...");
+  if (argc != 3) {
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: add_two_ints_client X Y");
+    return 1;
   }
 
-  auto result_future = client_->async_send_request(request);
-  return result_future;
+  std::shared_ptr<AddTwoIntsClient> node = std::make_shared<AddTwoIntsClient>();
+  node->call_client(atoll(argv[1]), atoll(argv[2]));
+
+  rclcpp::shutdown();
+  return 0;
 }
