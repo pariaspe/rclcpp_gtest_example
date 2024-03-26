@@ -20,24 +20,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "add_two_ints_server.hpp"
+#include "rclcpp/rclcpp.hpp"
 
-AddTwoIntsServer::AddTwoIntsServer() : Node("add_two_ints_server") {
-  service_ = this->create_service<example_interfaces::srv::AddTwoInts>(
-      "add_two_ints", std::bind(&AddTwoIntsServer::add, this,
-                                std::placeholders::_1, std::placeholders::_2));
+#include "rclcpp_gtest_example/add_two_ints_client.hpp"
 
-  RCLCPP_INFO(this->get_logger(), "Ready to add two ints.");
-}
+int main(int argc, char **argv) {
+  rclcpp::init(argc, argv);
 
-AddTwoIntsServer::~AddTwoIntsServer() {}
+  if (argc != 3) {
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: add_two_ints_client X Y");
+    return 1;
+  }
 
-void AddTwoIntsServer::add(
-    const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> request,
-    std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response) {
-  response->sum = request->a + request->b;
-  RCLCPP_INFO(this->get_logger(), "Incoming request\na: %ld b: %ld", request->a,
-              request->b);
-  RCLCPP_INFO(this->get_logger(), "sending back response: [%ld]",
-              (int64_t)response->sum);
+  std::shared_ptr<AddTwoIntsClient> node = std::make_shared<AddTwoIntsClient>();
+  node->call_client(atoll(argv[1]), atoll(argv[2]));
+
+  rclcpp::shutdown();
+  return 0;
 }

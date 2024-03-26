@@ -20,21 +20,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <chrono>
+#include <cstdlib>
+#include <memory>
+
+#include "example_interfaces/srv/add_two_ints.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-#include "rclcpp_gtest_example/add_two_ints_client.hpp"
+class AddTwoIntsServer : public rclcpp::Node {
+public:
+  AddTwoIntsServer();
+  ~AddTwoIntsServer();
 
-int main(int argc, char **argv) {
-  rclcpp::init(argc, argv);
+private:
+  rclcpp::Service<example_interfaces::srv::AddTwoInts>::SharedPtr service_;
 
-  if (argc != 3) {
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: add_two_ints_client X Y");
-    return 1;
-  }
-
-  std::shared_ptr<AddTwoIntsClient> node = std::make_shared<AddTwoIntsClient>();
-  node->call_client(atoll(argv[1]), atoll(argv[2]));
-
-  rclcpp::shutdown();
-  return 0;
-}
+  void
+  add(const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request>
+          request,
+      std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response);
+};

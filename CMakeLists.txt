@@ -49,10 +49,10 @@ install(
 )
 ###
 
-add_executable(server src/add_two_ints_server.cpp)
+add_executable(server src/server_node.cpp src/add_two_ints_server.cpp)
 ament_target_dependencies(server ${PROJECT_DEPENDENCIES})
 
-add_executable(client src/client_main.cpp src/add_two_ints_client.cpp)
+add_executable(client src/client_node.cpp src/add_two_ints_client.cpp)
 ament_target_dependencies(client ${PROJECT_DEPENDENCIES})
 
 install(TARGETS
