@@ -27,7 +27,7 @@ set(SOURCE_CPP_FILES
 )
 
 # Creating library for test linking
-add_library(${PROJECT_NAME} STATIC ${SOURCE_CPP_FILES} )
+add_library(${PROJECT_NAME} STATIC ${SOURCE_CPP_FILES})
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
