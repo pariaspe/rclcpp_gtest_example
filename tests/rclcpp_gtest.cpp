@@ -19,13 +19,15 @@
 #include "add_two_ints_server.hpp"
 
 /* Test fixture */
-class MyTest : public testing::Test {
+class MyTest : public testing::Test
+{
 protected:
   std::shared_ptr<AddTwoIntsServer> server_node;
   std::shared_ptr<AddTwoIntsClient> client_node;
   rclcpp::executors::SingleThreadedExecutor executor;
 
-  void SetUp() {
+  void SetUp()
+  {
     server_node = std::make_shared<AddTwoIntsServer>();
     client_node = std::make_shared<AddTwoIntsClient>();
 
@@ -33,7 +35,8 @@ protected:
     executor.add_node(client_node);
   }
 
-  void TearDown() {
+  void TearDown()
+  {
     executor.cancel();
     executor.remove_node(client_node);
     executor.remove_node(server_node);
@@ -53,7 +56,8 @@ TEST_F(MyTest, CallService) {
   ASSERT_EQ(result_future.get()->sum, 5);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char ** argv)
+{
   testing::InitGoogleTest(&argc, argv);
   rclcpp::init(argc, argv);
 

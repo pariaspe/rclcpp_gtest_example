@@ -22,7 +22,8 @@
 #include "example_interfaces/srv/add_two_ints.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-class AddTwoIntsClient : public rclcpp::Node {
+class AddTwoIntsClient : public rclcpp::Node
+{
 public:
   AddTwoIntsClient();
   ~AddTwoIntsClient();

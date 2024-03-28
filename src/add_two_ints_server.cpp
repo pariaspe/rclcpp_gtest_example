@@ -14,10 +14,13 @@
 
 #include "add_two_ints_server.hpp"
 
-AddTwoIntsServer::AddTwoIntsServer() : Node("add_two_ints_server") {
+AddTwoIntsServer::AddTwoIntsServer()
+: Node("add_two_ints_server")
+{
   service_ = this->create_service<example_interfaces::srv::AddTwoInts>(
-      "add_two_ints", std::bind(&AddTwoIntsServer::add, this,
-                                std::placeholders::_1, std::placeholders::_2));
+    "add_two_ints", std::bind(
+      &AddTwoIntsServer::add, this,
+      std::placeholders::_1, std::placeholders::_2));
 
   RCLCPP_INFO(this->get_logger(), "Ready to add two ints.");
 }
@@ -25,11 +28,14 @@ AddTwoIntsServer::AddTwoIntsServer() : Node("add_two_ints_server") {
 AddTwoIntsServer::~AddTwoIntsServer() {}
 
 void AddTwoIntsServer::add(
-    const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> request,
-    std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response) {
+  const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> request,
+  std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response)
+{
   response->sum = request->a + request->b;
-  RCLCPP_INFO(this->get_logger(), "Incoming request\na: %ld b: %ld", request->a,
-              request->b);
-  RCLCPP_INFO(this->get_logger(), "sending back response: [%ld]",
-              (int64_t)response->sum);
+  RCLCPP_INFO(
+    this->get_logger(), "Incoming request\na: %ld b: %ld", request->a,
+    request->b);
+  RCLCPP_INFO(
+    this->get_logger(), "sending back response: [%ld]",
+    (int64_t)response->sum);
 }

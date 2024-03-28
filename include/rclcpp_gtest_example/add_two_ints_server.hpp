@@ -22,7 +22,8 @@
 #include "example_interfaces/srv/add_two_ints.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-class AddTwoIntsServer : public rclcpp::Node {
+class AddTwoIntsServer : public rclcpp::Node
+{
 public:
   AddTwoIntsServer();
   ~AddTwoIntsServer();
@@ -31,9 +32,10 @@ private:
   rclcpp::Service<example_interfaces::srv::AddTwoInts>::SharedPtr service_;
 
   void
-  add(const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request>
-          request,
-      std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response);
+  add(
+    const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request>
+    request,
+    std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response);
 };
 
 #endif  // RCLCPP_GTEST_EXAMPLE__ADD_TWO_INTS_SERVER_HPP_

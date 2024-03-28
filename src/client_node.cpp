@@ -16,7 +16,8 @@
 
 #include "rclcpp_gtest_example/add_two_ints_client.hpp"
 
-int main(int argc, char **argv) {
+int main(int argc, char ** argv)
+{
   rclcpp::init(argc, argv);
 
   if (argc != 3) {

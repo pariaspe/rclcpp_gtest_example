@@ -16,7 +16,8 @@
 
 #include "rclcpp_gtest_example/add_two_ints_server.hpp"
 
-int main(int argc, char **argv) {
+int main(int argc, char ** argv)
+{
   rclcpp::init(argc, argv);
 
   std::shared_ptr<AddTwoIntsServer> node = std::make_shared<AddTwoIntsServer>();
